@@ -15,12 +15,8 @@ async def on_message(message):
         return
 
     if message.content.startswith('$help'):
-        await message.channel.send('Here\'s a list of the commands:')
-        commandHelp = ''
-        for cmd in cmds:
-            commandHelp += cmd
-            commandHelp += '\n'
-        await message.channel.send(commandHelp)
+        await helpCommand(message)
+        return
     
     if message.content.startswith('$hello'):
         await message.channel.send('Oh hey there :).')
@@ -31,5 +27,13 @@ async def on_message(message):
     else:
         await message.channel.send('That doesn\'t seem to be a valid command.\n' +
             'Type $help to see the possible commands for Portra')
+
+async def helpCommand(message):
+    await message.channel.send('Here\'s a list of the commands:')
+    commandHelp = ''
+    for cmd in cmds:
+        commandHelp += cmd
+        commandHelp += '\n'
+    await message.channel.send(commandHelp)
 
 client.run("ODEwMTA4NjMxMDU1ODU5NzMy.YCe2dA.Co5uUyPd2AXXBT_i-TOnlZAqSuE")
