@@ -28,16 +28,6 @@ async def on_message(message):
     if message.content.startswith('$help'):
         await helpCommand(message)
         return
-   
-    if message.content.startswith('$hello'):
-        await message.channel.send('Oh hey there :).')
-    elif message.content.startswith('$goodbye'):
-        await message.channel.send('Cya later ;)')
-    elif message.content.startswith('$pyjoke'):
-        await message.channel.send(pyjokes.get_joke())
-    else:
-        await message.channel.send('That doesn\'t seem to be a valid command.\n' +
-           'Type $help to see the possible commands for Portra')
 
     await bot.process_commands(message)
 
@@ -50,10 +40,26 @@ async def helpCommand(message):
     await message.channel.send(commandHelp)
 
 @bot.command()
+async def hello(ctx):
+    await ctx.send("Oh hi there")
+
+@bot.command()
+async def goodbye(ctx):
+    await ctx.send("See ya later")
+
+@bot.command()
+async def pyjoke(ctx):
+    await ctx.send(pyjokes.get_joke())
+
+@bot.command()
 async def dice(ctx, sides):
-    numSides = int(sides)
-    die = randint(1, numSides)
-    await ctx.send("You rolled {0}".format(die))
+    try:
+        numSides = int(sides)
+        die = randint(1, numSides)
+        await ctx.send("You rolled {0}".format(die))
+    except:
+        await ctx.send("Invalid number of sides. Make sure it's a positive integer")
+
 
 
 bot.run("ODEwMTA4NjMxMDU1ODU5NzMy.YCe2dA.Co5uUyPd2AXXBT_i-TOnlZAqSuE")
