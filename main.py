@@ -1,16 +1,15 @@
 import discord
-import os
 import logging
 import pyjokes
 import youtube_dl
-import dotenv
+from dotenv import load_dotenv
+import os
 
 from cmdDescriptions import cmds
 from random import randint
 from discord.ext import commands
 
-require('dotenv').config();
-const token = process.env.DISCORD_TOKEN;
+load_dotenv('.env')
 
 # discord.py logging to discord.log file
 logger = logging.getLogger('discord')
@@ -47,11 +46,11 @@ async def helpCommand(message):
 
 @bot.command()
 async def hello(ctx):
-    await ctx.send("Oh hi there")
+    await ctx.send("Oh hi there :O")
 
 @bot.command()
 async def goodbye(ctx):
-    await ctx.send("See ya later")
+    await ctx.send("See ya later!")
 
 @bot.command()
 async def pyjoke(ctx):
@@ -132,4 +131,4 @@ async def stop(ctx):
     else:
         await ctx.send("Portra isn't connected to a voice channel.")
 
-bot.run(token);
+bot.run(os.getenv('DISCORD_BOT_TOKEN'))
