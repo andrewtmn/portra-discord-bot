@@ -1,3 +1,4 @@
 *.env
+*.vscode
 song.mp3
 discord.log
