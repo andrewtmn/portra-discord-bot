@@ -3,10 +3,14 @@ import os
 import logging
 import pyjokes
 import youtube_dl
+import dotenv
 
 from cmdDescriptions import cmds
 from random import randint
 from discord.ext import commands
+
+require('dotenv').config();
+const token = process.env.DISCORD_TOKEN;
 
 # discord.py logging to discord.log file
 logger = logging.getLogger('discord')
@@ -128,4 +132,4 @@ async def stop(ctx):
     else:
         await ctx.send("Portra isn't connected to a voice channel.")
 
-bot.run("ODEwMTA4NjMxMDU1ODU5NzMy.YCe2dA.Co5uUyPd2AXXBT_i-TOnlZAqSuE")
+bot.run(token);
